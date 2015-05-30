@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
@@ -17,6 +16,7 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,8 +26,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -36,7 +37,7 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
 
-public class MainActivity extends Activity implements
+public class MainActivity extends AppCompatActivity implements
 ConnectionCallbacks, OnConnectionFailedListener{
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -72,8 +73,8 @@ ConnectionCallbacks, OnConnectionFailedListener{
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
@@ -85,12 +86,12 @@ ConnectionCallbacks, OnConnectionFailedListener{
                 R.string.drawer_close  /* "close drawer" description for accessibility */
                 ) {
             public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
+                getSupportActionBar().setTitle(mTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -151,7 +152,7 @@ ConnectionCallbacks, OnConnectionFailedListener{
         case R.id.action_websearch:
             // create intent to perform web search for this planet
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
+            intent.putExtra(SearchManager.QUERY, getSupportActionBar().getTitle());
             // catch event that there's no activity to handle intent
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
@@ -191,7 +192,7 @@ ConnectionCallbacks, OnConnectionFailedListener{
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+        getSupportActionBar().setTitle(mTitle);
     }
 
     /**
@@ -216,7 +217,7 @@ ConnectionCallbacks, OnConnectionFailedListener{
     /**
      * Fragment that appears in the "content_frame", shows a planet
      */
-    public static class PlanetFragment extends Fragment {
+    public class PlanetFragment extends Fragment {
         public static final String ARG_PLANET_NUMBER = "planet_number";
 
         public PlanetFragment() {
@@ -230,9 +231,25 @@ ConnectionCallbacks, OnConnectionFailedListener{
             int i = getArguments().getInt(ARG_PLANET_NUMBER);
             String actionName = getResources().getStringArray(R.array.actions_array)[i];
 
-            int imageId = getResources().getIdentifier(getImageId(actionName),
+            /*int imageId = getResources().getIdentifier(getImageId(actionName),
                             "drawable", getActivity().getPackageName());
-            ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
+            ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);*/
+            String textMsg = "";
+            if(actionName.equalsIgnoreCase("Offers by Category")){
+            	Spinner spinner = (Spinner) rootView.findViewById(R.id.categories_spinner);
+            	ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
+            	        R.array.categories_array, android.R.layout.simple_spinner_item);
+            	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            	spinner.setAdapter(adapter);
+            	return rootView;
+            }
+            if(actionName.equalsIgnoreCase("Nearby Offers") && mLastLocation != null){
+            	textMsg = "Offers Near your location : "+ getLocality(mLastLocation);
+            } else {
+            	textMsg = "Offers : "+actionName;
+            }
+            ((TextView) rootView.findViewById(R.id.resultMsg)).setText(textMsg);
+           
             getActivity().setTitle(actionName);
             return rootView;
         }
@@ -319,6 +336,38 @@ ConnectionCallbacks, OnConnectionFailedListener{
 	                location.getLongitude(), illegalArgumentException);
 	    	
 	    }
+	}
+	
+	public String getLocality(Location location){
+		List<Address> addresses = null;
+		String locationString = "";
+		
+	    try {
+	    	 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+	        addresses = geocoder.getFromLocation(
+	                location.getLatitude(),
+	                location.getLongitude(),
+	                // In this sample, get just a single address.
+	                1);
+	        if(!addresses.isEmpty()){
+	        	Address address = addresses.get(0);	        	
+	        	locationString = address.getLocality();
+	        }
+	    } catch (IOException ioException) {
+	        // Catch network or other I/O problems.
+	    	locationString = getString(R.string.service_not_available);
+	        Log.e(TAG, locationString, ioException);
+	    	
+	    } catch (IllegalArgumentException illegalArgumentException) {
+	        // Catch invalid latitude or longitude values.
+	    	locationString = getString(R.string.invalid_lat_long_used);
+	        Log.e(TAG, locationString + ". " +
+	                "Latitude = " + location.getLatitude() +
+	                ", Longitude = " +
+	                location.getLongitude(), illegalArgumentException);
+	    	
+	    }
+	    return locationString;
 	}
 
 	

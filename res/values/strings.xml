@@ -24,11 +24,23 @@
         <item>Invite a Friend</item>
         <item>Settings</item>
     </string-array>
+    <string-array name="categories_array">
+        <item>Restaurants</item>
+        <item>Apparels</item>
+        <item>Clothing</item>
+        <item>Groceries</item>
+        <item>Pharmacies</item>
+        <item>Electronics</item>
+        <item>Books</item>       
+    </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     
+    <!-- Results -->
+     <string name="resultMsg">Offers near your current Location</string>
+      <string name="categories_spinner">offers categories</string>
     <!-- Location specific -->
     <string name="no_geocoder_available">No geocoder available</string>
 

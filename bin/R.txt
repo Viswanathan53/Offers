@@ -9,6 +9,7 @@ int anim abc_slide_in_top 0x7f040007
 int anim abc_slide_out_bottom 0x7f040008
 int anim abc_slide_out_top 0x7f040009
 int array actions_array 0x7f0d0000
+int array categories_array 0x7f0d0001
 int attr actionBarDivider 0x7f010018
 int attr actionBarItemBackground 0x7f010019
 int attr actionBarPopupTheme 0x7f010012
@@ -535,7 +536,7 @@ int id action_menu_presenter 0x7f0a0006
 int id action_mode_bar 0x7f0a0052
 int id action_mode_bar_stub 0x7f0a0051
 int id action_mode_close_button 0x7f0a003a
-int id action_websearch 0x7f0a0067
+int id action_websearch 0x7f0a0069
 int id activity_chooser_view_content 0x7f0a003b
 int id adjust_height 0x7f0a0023
 int id adjust_width 0x7f0a0024
@@ -547,6 +548,7 @@ int id buttonPanel 0x7f0a004b
 int id buyButton 0x7f0a002d
 int id buy_now 0x7f0a0031
 int id buy_with_google 0x7f0a0032
+int id categories_spinner 0x7f0a0068
 int id checkbox 0x7f0a004d
 int id classic 0x7f0a0034
 int id collapseActionView 0x7f0a001a
@@ -589,6 +591,7 @@ int id production 0x7f0a002a
 int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a004f
+int id resultMsg 0x7f0a0067
 int id sandbox 0x7f0a002b
 int id satellite 0x7f0a0026
 int id screen 0x7f0a0015
@@ -684,9 +687,10 @@ int string abc_toolbar_collapse_description 0x7f0b0004
 int string accept 0x7f0b0013
 int string action_settings 0x7f0b0039
 int string action_websearch 0x7f0b003c
-int string address_found 0x7f0b0040
+int string address_found 0x7f0b0042
 int string app_name 0x7f0b0037
 int string app_not_available 0x7f0b003d
+int string categories_spinner 0x7f0b003f
 int string common_android_wear_notification_needs_update_text 0x7f0b001a
 int string common_android_wear_update_text 0x7f0b0027
 int string common_android_wear_update_title 0x7f0b0025
@@ -723,13 +727,14 @@ int string create_calendar_title 0x7f0b0015
 int string decline 0x7f0b0014
 int string drawer_close 0x7f0b003b
 int string drawer_open 0x7f0b003a
-int string fetch_address 0x7f0b003f
+int string fetch_address 0x7f0b0041
 int string hello_world 0x7f0b0038
-int string invalid_lat_long_used 0x7f0b0044
-int string no_address_found 0x7f0b0041
-int string no_geocoder_available 0x7f0b003e
-int string no_location_data_provided 0x7f0b0042
-int string service_not_available 0x7f0b0043
+int string invalid_lat_long_used 0x7f0b0046
+int string no_address_found 0x7f0b0043
+int string no_geocoder_available 0x7f0b0040
+int string no_location_data_provided 0x7f0b0044
+int string resultMsg 0x7f0b003e
+int string service_not_available 0x7f0b0045
 int string store_picture_message 0x7f0b0012
 int string store_picture_title 0x7f0b0011
 int string wallet_buy_button_place_holder 0x7f0b0036

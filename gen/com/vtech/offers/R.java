@@ -33,6 +33,7 @@ public final class R {
     </string-array> 
          */
         public static final int actions_array=0x7f0d0000;
+        public static final int categories_array=0x7f0d0001;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -2400,7 +2401,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a0052;
         public static final int action_mode_bar_stub=0x7f0a0051;
         public static final int action_mode_close_button=0x7f0a003a;
-        public static final int action_websearch=0x7f0a0067;
+        public static final int action_websearch=0x7f0a0069;
         public static final int activity_chooser_view_content=0x7f0a003b;
         public static final int adjust_height=0x7f0a0023;
         public static final int adjust_width=0x7f0a0024;
@@ -2412,6 +2413,7 @@ containing a value of this type.
         public static final int buyButton=0x7f0a002d;
         public static final int buy_now=0x7f0a0031;
         public static final int buy_with_google=0x7f0a0032;
+        public static final int categories_spinner=0x7f0a0068;
         public static final int checkbox=0x7f0a004d;
         public static final int classic=0x7f0a0034;
         public static final int collapseActionView=0x7f0a001a;
@@ -2454,6 +2456,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a004f;
+        public static final int resultMsg=0x7f0a0067;
         public static final int sandbox=0x7f0a002b;
         public static final int satellite=0x7f0a0026;
         public static final int screen=0x7f0a0015;
@@ -2625,9 +2628,10 @@ containing a value of this type.
         public static final int accept=0x7f0b0013;
         public static final int action_settings=0x7f0b0039;
         public static final int action_websearch=0x7f0b003c;
-        public static final int address_found=0x7f0b0040;
+        public static final int address_found=0x7f0b0042;
         public static final int app_name=0x7f0b0037;
         public static final int app_not_available=0x7f0b003d;
+        public static final int categories_spinner=0x7f0b003f;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f0b001a;
@@ -2741,15 +2745,18 @@ containing a value of this type.
         public static final int decline=0x7f0b0014;
         public static final int drawer_close=0x7f0b003b;
         public static final int drawer_open=0x7f0b003a;
-        public static final int fetch_address=0x7f0b003f;
+        public static final int fetch_address=0x7f0b0041;
         public static final int hello_world=0x7f0b0038;
-        public static final int invalid_lat_long_used=0x7f0b0044;
-        public static final int no_address_found=0x7f0b0041;
+        public static final int invalid_lat_long_used=0x7f0b0046;
+        public static final int no_address_found=0x7f0b0043;
         /**  Location specific 
          */
-        public static final int no_geocoder_available=0x7f0b003e;
-        public static final int no_location_data_provided=0x7f0b0042;
-        public static final int service_not_available=0x7f0b0043;
+        public static final int no_geocoder_available=0x7f0b0040;
+        public static final int no_location_data_provided=0x7f0b0044;
+        /**  Results 
+         */
+        public static final int resultMsg=0x7f0b003e;
+        public static final int service_not_available=0x7f0b0045;
         public static final int store_picture_message=0x7f0b0012;
         public static final int store_picture_title=0x7f0b0011;
         /**  Text on a placeholder buy button when Google Play services is not
